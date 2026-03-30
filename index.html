@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Congratulations to P'Jao!</title>
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;600&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-red: #b30000;
+            --dark-red: #7a0000;
+            --gold: #d4af37;
+            --bg-light: #fff5f5;
+        }
+
+        * { box-sizing: border-box; }
+
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Kanit', sans-serif;
+            background-color: var(--bg-light);
+            overflow-x: hidden;
+        }
+
+        .balloon-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 100; 
+        }
+
+        .cat-balloon {
+            position: absolute;
+            bottom: -150px;
+            width: 85px; 
+            height: 85px;
+            background-size: cover;
+            background-position: center;
+            border-radius: 50%;
+            box-shadow: 0 8px 15px rgba(0,0,0,0.2);
+            border: 3px solid white;
+            animation: riseCustom 14s infinite linear, wobble 3s infinite ease-in-out;
+            opacity: 0;
+        }
+
+        .cat-balloon::after {
+            content: '';
+            position: absolute;
+            bottom: -50px;
+            left: 50%;
+            width: 1.5px;
+            height: 50px;
+            background: rgba(255,255,255,0.5);
+        }
+
+        @keyframes riseCustom {
+            0% { bottom: -150px; opacity: 0; }
+            10% { opacity: 1; }
+            90% { opacity: 1; }
+            100% { bottom: 110vh; opacity: 0; }
+        }
+
+        @keyframes wobble {
+            0%, 100% { transform: translateX(0); }
+            50% { transform: translateX(20px); }
+        }
+
+        header {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            background: linear-gradient(rgba(179, 0, 0, 0.85), rgba(122, 0, 0, 0.95)), 
+                        url('https://images.unsplash.com/photo-1523050853064-850495396623?auto=format&fit=crop&q=80&w=1500');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            color: white;
+            padding: 20px;
+            border-bottom: 10px solid var(--gold);
+        }
+
+        header h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2.5rem, 8vw, 5.5rem);
+            margin: 0;
+            letter-spacing: 5px;
+            text-shadow: 0 4px 15px rgba(0,0,0,0.6);
+        }
+
+        header p {
+            font-size: clamp(1.2rem, 4vw, 2rem);
+            margin-top: 20px;
+            font-weight: 300;
+        }
+
+        .content-wrap {
+            max-width: 900px;
+            margin: -60px auto 60px;
+            padding: 0 20px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .message-card {
+            background: white;
+            padding: 50px 30px;
+            border-radius: 25px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+            text-align: center;
+            border-top: 6px solid var(--gold);
+        }
+
+        footer {
+            background: var(--dark-red);
+            color: rgba(255,255,255,0.6);
+            text-align: center;
+            padding: 50px 20px;
+        }
+
+        @media (max-width: 480px) {
+            .cat-balloon { width: 65px; height: 65px; }
+            header { background-attachment: scroll; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="balloon-container" id="cat-balloon-container"></div>
+
+    <header>
+        <h1>CONGRATULATIONS</h1>
+        <p>To พี่จ้าวยิงวาโรคมๆ 🎓🎈🐱</p>
+    </header>
+
+    <div class="content-wrap">
+        <div class="message-card">
+            <h2 style="color: var(--primary-red); margin-top: 0; font-size: 1.8rem;">Congratulations P'Jao</h2>
+            <p style="font-size: 1.1rem; line-height: 1.8;">ยินดีกับพี่จ้าวด้วย GoodLuckHaveFun กับมหาลัยคับบ <br><b>#Byโตโน่พงหวัด</b></p>
+        </div>
+    </div>
+
+    <footer>
+        <p>Made with ❤️ น้องโนโน่ชานมไข่มุก</p>
+    </footer>
+
+    <script>
+        // ==========================================
+        // --- ส่วนใส่รูปแมว (เจ๊เพิ่มกี่รูปก็ได้ตรงนี้) ---
+        // ==========================================
+        const catImages = [
+            'https://media.discordapp.net/attachments/924343991594524672/1488192381848256552/image.png?ex=69cbe2a9&is=69ca9129&hm=493554dbd2db28565cf4f7da8f56e42ba297a99b7d2e457890e1e0826367e73c&=&format=webp&quality=lossless&width=600&height=800',
+            'https://media.discordapp.net/attachments/924343991594524672/1488192382527602718/image.png?ex=69cbe2a9&is=69ca9129&hm=580f4a3ef1d531c2004b1605b476dcb67aaff243a4a937ea60454a154cd8de9c&=&format=webp&quality=lossless',
+            'https://media.discordapp.net/attachments/924343991594524672/1488192383676846080/image.png?ex=69cbe2a9&is=69ca9129&hm=8dc957a76001b6e3e65da9d4bedc55fd14d655a8bc5f129445fb04157ac9dfdf&=&format=webp&quality=lossless',
+            'https://cdn.discordapp.com/attachments/924343991594524672/1488192424017924156/image.png?ex=69cbe2b3&is=69ca9133&hm=be2ac94940cbf977f6d2b4e331f4e04d39cee17525a8b4f8e1d4f8e53f0ad338&',
+            'https://cdn.discordapp.com/attachments/924343991594524672/1488193126479691888/image.png?ex=69cbe35a&is=69ca91da&hm=33d61d518461703dfa57b087e1db5b65e0bed7e016672be07432ed17d5ab3d6c&',
+            'https://cdn.discordapp.com/attachments/924343991594524672/1488192691824234677/e86f2c02-9da2-4994-8c6f-c6a79069df37.png?ex=69cbe2f3&is=69ca9173&hm=5906bc891c27c32e628c7d5257ddc19177759528c0f922cbe5869a815ce9021e&',
+            'https://media.discordapp.net/attachments/924343991594524672/1488193292385390762/image.png?ex=69cbe382&is=69ca9202&hm=e03ee2f1765d4757afef7e482dbf7a3e2144c780409ce1fde68035f63e8a504e&=&format=webp&quality=lossless',
+            'https://media.discordapp.net/attachments/924343991594524672/1488193394911219732/ec6511ea-5a4d-4339-b293-cf6206ee15ee.png?ex=69cbe39a&is=69ca921a&hm=c8e352daacfaef460cdcb16058adeb366de580525671a29c36071c2b5ae65d6d&=&format=webp&quality=lossless',
+            'https://cdn.discordapp.com/attachments/924343991594524672/1488194080444911776/image.png?ex=69cbe43e&is=69ca92be&hm=1d125faccdcb7bfac9cfaa0b47e5ee7b82bf7948d3055ebbec2074d3e9babb73&',
+            'https://cdn.discordapp.com/attachments/924343991594524672/1488194015882117201/45d1a554-9e63-4700-b399-c9253419898b.png?ex=69cbe42e&is=69ca92ae&hm=2d3489f73ea58ce49c03b2f2ab6de823d8f32b5bcbde9a9242253cdc7f6c9bbb&',
+            'https://cdn.discordapp.com/attachments/924343991594524672/1488194171113308281/25e0d10a-ede0-4e78-8109-99b35e482e75.png?ex=69cbe453&is=69ca92d3&hm=ff3c2fb00aad95621f604965c4ea353fe18b620307862e75ed98357c8da6f9cb&'
+        ];
+
+        function createBalloons() {
+            const container = document.getElementById('cat-balloon-container');
+            // จำนวนแมวที่แสดงบนจอ (ปรับตามความชอบ)
+            const count = window.innerWidth < 480 ? 12 : 24; 
+            
+            for (let i = 0; i < count; i++) {
+                const b = document.createElement('div');
+                b.className = 'cat-balloon';
+                
+                b.style.left = Math.random() * 90 + '%'; 
+                // สุ่มเวลาลอย (0-20 วินาที) เพื่อไม่ให้ลอยมาพร้อมกันหมด
+                b.style.animationDelay = Math.random() * 20 + 's';
+                
+                // สุ่มดึงรูปจาก Array catImages
+                const randomImg = catImages[Math.floor(Math.random() * catImages.length)];
+                b.style.backgroundImage = `url('${randomImg}')`;
+                
+                // สุ่มขนาด และสุ่มความเร็ว Animation (เพื่อให้ลอยช้าเร็วต่างกัน)
+                const size = 0.7 + Math.random() * 0.6;
+                const duration = 10 + Math.random() * 10;
+                
+                b.style.width = (85 * size) + 'px';
+                b.style.height = (85 * size) + 'px';
+                b.style.animationDuration = duration + 's, ' + (2 + Math.random() * 2) + 's';
+                
+                container.appendChild(b);
+            }
+        }
+
+        createBalloons();
+
+        // รีเซ็ตเมื่อเปลี่ยนขนาดหน้าจอ
+        let resizeTimer;
+        window.addEventListener('resize', () => {
+            clearTimeout(resizeTimer);
+            resizeTimer = setTimeout(() => {
+                document.getElementById('cat-balloon-container').innerHTML = '';
+                createBalloons();
+            }, 300);
+        });
+    </script>
+</body>
+</html>
