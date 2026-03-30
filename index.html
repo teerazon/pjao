@@ -2,8 +2,8 @@
 <html lang="th">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Congratulations to P'Jao!</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Congratulations to P'Jao! 🎓🐱</title>
     <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;600&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
     <style>
         :root {
@@ -13,16 +13,21 @@
             --bg-light: #fff5f5;
         }
 
-        * { box-sizing: border-box; }
+        * { 
+            box-sizing: border-box; 
+            margin: 0; 
+            padding: 0;
+            -webkit-tap-highlight-color: transparent;
+        }
 
         body {
-            margin: 0;
-            padding: 0;
             font-family: 'Kanit', sans-serif;
             background-color: var(--bg-light);
             overflow-x: hidden;
+            width: 100%;
         }
 
+        /* ----- Cat Balloon System (ปรับ Layer ให้ทับทุกอย่าง) ----- */
         .balloon-container {
             position: fixed;
             top: 0;
@@ -30,47 +35,51 @@
             width: 100%;
             height: 100%;
             pointer-events: none;
-            z-index: 100; 
+            z-index: 999; /* อยู่หน้าสุดทับตัวหนังสือ */
         }
 
         .cat-balloon {
             position: absolute;
             bottom: -150px;
-            width: 85px; 
-            height: 85px;
+            width: clamp(70px, 18vw, 100px); 
+            height: clamp(70px, 18vw, 100px);
             background-size: cover;
             background-position: center;
             border-radius: 50%;
-            box-shadow: 0 8px 15px rgba(0,0,0,0.2);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
             border: 3px solid white;
-            animation: riseCustom 14s infinite linear, wobble 3s infinite ease-in-out;
+            animation: riseCustom 12s infinite linear, wobble 3s infinite ease-in-out;
             opacity: 0;
+            will-change: transform, bottom;
         }
 
+        /* เพิ่มเส้นเชือกลูกโป่งให้ดูน่ารัก */
         .cat-balloon::after {
             content: '';
             position: absolute;
-            bottom: -50px;
+            bottom: -40px;
             left: 50%;
             width: 1.5px;
-            height: 50px;
-            background: rgba(255,255,255,0.5);
+            height: 40px;
+            background: rgba(255,255,255,0.4);
         }
 
         @keyframes riseCustom {
             0% { bottom: -150px; opacity: 0; }
-            10% { opacity: 1; }
-            90% { opacity: 1; }
+            5% { opacity: 1; }
+            95% { opacity: 1; }
             100% { bottom: 110vh; opacity: 0; }
         }
 
         @keyframes wobble {
-            0%, 100% { transform: translateX(0); }
-            50% { transform: translateX(20px); }
+            0%, 100% { transform: translateX(0) rotate(-5deg); }
+            50% { transform: translateX(20px) rotate(5deg); }
         }
 
+        /* ----- Header / Banner ----- */
         header {
             min-height: 100vh;
+            min-height: 100svh;
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -80,52 +89,69 @@
                         url('https://images.unsplash.com/photo-1523050853064-850495396623?auto=format&fit=crop&q=80&w=1500');
             background-size: cover;
             background-position: center;
-            background-attachment: fixed;
             color: white;
             padding: 20px;
-            border-bottom: 10px solid var(--gold);
+            position: relative;
+            z-index: 1; /* อยู่หลังลูกโป่ง */
         }
 
         header h1 {
             font-family: 'Playfair Display', serif;
-            font-size: clamp(2.5rem, 8vw, 5.5rem);
-            margin: 0;
-            letter-spacing: 5px;
+            /* --- ปรับขนาดตรงนี้ --- */
+            /* clamp(ขนาดเล็กสุด, ขนาดที่เปลี่ยนตามจอ, ขนาดใหญ่สุด) */
+            font-size: clamp(2rem, 8vw, 5.5rem); 
+            /* ------------------ */
+            line-height: 1.1;
+            letter-spacing: 2px;
             text-shadow: 0 4px 15px rgba(0,0,0,0.6);
+            margin-bottom: 15px;
         }
 
         header p {
-            font-size: clamp(1.2rem, 4vw, 2rem);
-            margin-top: 20px;
+            font-size: clamp(1rem, 4.5vw, 1.8rem);
             font-weight: 300;
+            opacity: 0.9;
         }
 
+        /* ----- Content Section ----- */
         .content-wrap {
-            max-width: 900px;
-            margin: -60px auto 60px;
-            padding: 0 20px;
+            width: 92%;
+            max-width: 700px;
+            margin: -40px auto 60px;
             position: relative;
-            z-index: 2;
+            z-index: 10; /* อยู่หน้า Header แต่หลังลูกโป่ง */
         }
 
         .message-card {
             background: white;
-            padding: 50px 30px;
+            padding: clamp(1.5rem, 6vw, 3rem);
             border-radius: 25px;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.15);
             text-align: center;
-            border-top: 6px solid var(--gold);
+            border-top: 8px solid var(--gold);
+        }
+
+        .message-card h2 {
+            color: var(--primary-red);
+            font-size: clamp(1.4rem, 5vw, 2.2rem);
+            margin-bottom: 15px;
+        }
+
+        .message-card p {
+            font-size: clamp(1rem, 3.8vw, 1.2rem);
+            line-height: 1.7;
+            color: #333;
         }
 
         footer {
             background: var(--dark-red);
             color: rgba(255,255,255,0.6);
             text-align: center;
-            padding: 50px 20px;
+            padding: 40px 20px;
+            font-size: 0.9rem;
         }
 
         @media (max-width: 480px) {
-            .cat-balloon { width: 65px; height: 65px; }
             header { background-attachment: scroll; }
         }
     </style>
@@ -136,13 +162,13 @@
 
     <header>
         <h1>CONGRATULATIONS</h1>
-        <p>To พี่จ้าวยิงวาโรคมๆ 🎓🎈🎉</p>
+        <p>To พี่จ้าวยิงวาโรคมๆ 🎓🎈🐱</p>
     </header>
 
     <div class="content-wrap">
         <div class="message-card">
-            <h2 style="color: var(--primary-red); margin-top: 0; font-size: 1.8rem;">Congratulations P'Jao</h2>
-            <p style="font-size: 1.1rem; line-height: 1.8;">ยินดีกับพี่จ้าวด้วย GoodLuckHaveFun กับมหาลัยคับบ <br><b>#Byโตโน่พงหวัด</b></p>
+            <h2>Congratulations P'Jao</h2>
+            <p>ยินดีกับพี่จ้าวด้วย GoodLuckHaveFun กับมหาลัยคับบ<br><b>#Byโตโน่พงหวัด</b></p>
         </div>
     </div>
 
@@ -151,7 +177,6 @@
     </footer>
 
     <script>
-        
         const catImages = [
             'https://media.discordapp.net/attachments/924343991594524672/1488192381848256552/image.png?ex=69cbe2a9&is=69ca9129&hm=493554dbd2db28565cf4f7da8f56e42ba297a99b7d2e457890e1e0826367e73c&=&format=webp&quality=lossless&width=600&height=800',
             'https://media.discordapp.net/attachments/924343991594524672/1488192382527602718/image.png?ex=69cbe2a9&is=69ca9129&hm=580f4a3ef1d531c2004b1605b476dcb67aaff243a4a937ea60454a154cd8de9c&=&format=webp&quality=lossless',
@@ -168,26 +193,21 @@
 
         function createBalloons() {
             const container = document.getElementById('cat-balloon-container');
-
-            const count = window.innerWidth < 480 ? 12 : 24; 
+            const isMobile = window.innerWidth < 768;
+            const count = isMobile ? 12 : 25; 
             
             for (let i = 0; i < count; i++) {
                 const b = document.createElement('div');
                 b.className = 'cat-balloon';
                 
-                b.style.left = Math.random() * 90 + '%'; 
-
-                b.style.animationDelay = Math.random() * 20 + 's';
+                b.style.left = (Math.random() * 85 + 5) + '%'; 
+                b.style.animationDelay = (Math.random() * 15) + 's';
                 
                 const randomImg = catImages[Math.floor(Math.random() * catImages.length)];
                 b.style.backgroundImage = `url('${randomImg}')`;
                 
-                const size = 0.7 + Math.random() * 0.6;
-                const duration = 10 + Math.random() * 10;
-                
-                b.style.width = (85 * size) + 'px';
-                b.style.height = (85 * size) + 'px';
-                b.style.animationDuration = duration + 's, ' + (2 + Math.random() * 2) + 's';
+                const duration = 10 + Math.random() * 8;
+                b.style.animationDuration = `${duration}s, ${2.5 + Math.random() * 2}s`;
                 
                 container.appendChild(b);
             }
@@ -199,9 +219,10 @@
         window.addEventListener('resize', () => {
             clearTimeout(resizeTimer);
             resizeTimer = setTimeout(() => {
-                document.getElementById('cat-balloon-container').innerHTML = '';
+                const container = document.getElementById('cat-balloon-container');
+                container.innerHTML = '';
                 createBalloons();
-            }, 300);
+            }, 250);
         });
     </script>
 </body>
