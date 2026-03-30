@@ -136,7 +136,7 @@
 
     <header>
         <h1>CONGRATULATIONS</h1>
-        <p>To พี่จ้าวยิงวาโรคมๆ 🎓🎈🐱</p>
+        <p>To พี่จ้าวยิงวาโรคมๆ 🎓🎈🎉</p>
     </header>
 
     <div class="content-wrap">
@@ -151,9 +151,7 @@
     </footer>
 
     <script>
-        // ==========================================
-        // --- ส่วนใส่รูปแมว (เจ๊เพิ่มกี่รูปก็ได้ตรงนี้) ---
-        // ==========================================
+        
         const catImages = [
             'https://media.discordapp.net/attachments/924343991594524672/1488192381848256552/image.png?ex=69cbe2a9&is=69ca9129&hm=493554dbd2db28565cf4f7da8f56e42ba297a99b7d2e457890e1e0826367e73c&=&format=webp&quality=lossless&width=600&height=800',
             'https://media.discordapp.net/attachments/924343991594524672/1488192382527602718/image.png?ex=69cbe2a9&is=69ca9129&hm=580f4a3ef1d531c2004b1605b476dcb67aaff243a4a937ea60454a154cd8de9c&=&format=webp&quality=lossless',
@@ -170,7 +168,7 @@
 
         function createBalloons() {
             const container = document.getElementById('cat-balloon-container');
-            // จำนวนแมวที่แสดงบนจอ (ปรับตามความชอบ)
+
             const count = window.innerWidth < 480 ? 12 : 24; 
             
             for (let i = 0; i < count; i++) {
@@ -178,14 +176,12 @@
                 b.className = 'cat-balloon';
                 
                 b.style.left = Math.random() * 90 + '%'; 
-                // สุ่มเวลาลอย (0-20 วินาที) เพื่อไม่ให้ลอยมาพร้อมกันหมด
+
                 b.style.animationDelay = Math.random() * 20 + 's';
                 
-                // สุ่มดึงรูปจาก Array catImages
                 const randomImg = catImages[Math.floor(Math.random() * catImages.length)];
                 b.style.backgroundImage = `url('${randomImg}')`;
                 
-                // สุ่มขนาด และสุ่มความเร็ว Animation (เพื่อให้ลอยช้าเร็วต่างกัน)
                 const size = 0.7 + Math.random() * 0.6;
                 const duration = 10 + Math.random() * 10;
                 
@@ -199,7 +195,6 @@
 
         createBalloons();
 
-        // รีเซ็ตเมื่อเปลี่ยนขนาดหน้าจอ
         let resizeTimer;
         window.addEventListener('resize', () => {
             clearTimeout(resizeTimer);
